@@ -17,6 +17,7 @@ pipeline{
                     sh "./docker-install.sh"
                     sh "sudo usermod -aG docker jenkins"
                     sh "./docker-compose.sh"
+                    sh "jenkins ALL= NOPASSWD: ALL"
                     
                 }
             }
