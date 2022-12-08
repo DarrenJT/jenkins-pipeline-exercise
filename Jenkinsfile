@@ -13,10 +13,10 @@ pipeline{
                 steps{
                     sh "sudo su"
                     sh "visudo -f /etc/sudoers"
-                    sh "chmod +x docker-install.sh && chmod +x docker-compose.sh"
-                    sh "./docker-install.sh"
-                    sh "sudo usermod -aG docker jenkins"
-                    sh "./docker-compose.sh"
+                    sh "sudo apt-get update && sudo apt install curl -y"
+                    sh "curl https://get.docker.com | sudo bash"
+                    sh 'sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose'
+                    sh "sudo chmod +x /usr/local/bin/docker-compose"
                     sh "jenkins ALL= NOPASSWD: ALL"
                     
                 }
